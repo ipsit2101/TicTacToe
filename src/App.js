@@ -3,6 +3,8 @@ import { useState } from "react";
 import Board from "./My Components/Board";
 import History from "./My Components/History";
 import CalculateWinner from "./My Components/Helper";
+import StatusMessage from "./My Components/StatusMessage";
+
 import "./Styles/root.scss";
 
 function App() {
@@ -12,12 +14,12 @@ function App() {
 
   const [currentMove, setCurrentMove] = useState(0);  // used to store the index of history(array of Objects)
 
-  let current = history[currentMove]; // to get current state of the game
+  const current = history[currentMove]; // to get current state of the game
 
   const winner = CalculateWinner(current.state);
   console.log(winner);
 
-  const message = (winner ? `${winner} is the winner` : `${current.isXNext ? 'X' : 'O'} is Next`);
+  //const message = (winner ? `${winner} is the winner` : `${current.isXNext ? 'X' : 'O'} is Next`);
 
   const updateCell = (position) => {
     
@@ -40,17 +42,18 @@ function App() {
     setCurrentMove(prev => prev+1);
   };
 
-  const moveTo = (move) => {
+  const moveTo = (move) => { 
     setCurrentMove(move);
   }
 
   return (
     <>
-      <h1 className="text-center my-4">Tic Tac Toe</h1>
-      <h3 className="text-center my-5"> {message} </h3>
+      <h1 className="text-center my-3">Tic Tac Toe</h1>
+      <br/>
+      <StatusMessage current = {current} winner = {winner}/> 
       <div className="app">
         <Board state = {current.state} handleClick = {updateCell} />
-        <History history = {history} moveTo = {moveTo}/>
+        <History history = {history} moveTo = {moveTo}  currentMove = {currentMove} />
       </div>
     </>
   );
