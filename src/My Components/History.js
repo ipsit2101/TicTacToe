@@ -2,7 +2,7 @@ import React from "react";
 
 const History = ({ history, moveTo, currentMove }) => {
   const style = {
-    margin: "15px",
+    margin: "38px",
     padding: "5px",
     fontSize: "15px",
     listStyle: "none",
@@ -17,7 +17,6 @@ const History = ({ history, moveTo, currentMove }) => {
               type="button"
               style={{
                 fontWeight: move === currentMove ? "bold" : "normal",
-                // color: move === currentMove ? "#155724" : "rgb(219, 136, 19)",
                 width: '150px',
                 padding: '6px',
                 margin: '5px',

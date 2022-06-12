@@ -44,7 +44,6 @@ button {
 
 .header {
   background-color: rgb(4, 185, 31);
-  float: left;
   position: absolute;
   top: 0;
   height: 80px;
@@ -54,8 +53,8 @@ button {
 
 .footer {
   background-color: rgb(219, 136, 19);
-  position: absolute;
-  right: 0;
+  position: sticky;
+  left: 100%;
   height: 80px;
   width: 80px;
   border-top-left-radius: 80px;
