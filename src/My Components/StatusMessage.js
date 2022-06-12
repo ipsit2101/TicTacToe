@@ -7,7 +7,7 @@ const StatusMessage = ({ current, winner }) => {
   return (
     <h3 className="text text-center my-4">
       {winner && `Winner is ${winner}`}
-      {!winner && !noMovesLeft && `Next is ${current.isXNext ? "X" : "O"}`}
+      {!winner && !noMovesLeft && `Next is ${current.isXNext ? 'X' : 'O'}`}
       {!winner && noMovesLeft && `X and O Tied`}
     </h3>
   );

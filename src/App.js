@@ -7,16 +7,17 @@ import StatusMessage from "./My Components/StatusMessage";
 
 import "./Styles/root.scss";
 
+const NEW_GAME = [{state: Array(9).fill(''), isXNext: false}];
+
 function App() {
 
-  const [history, setHistory] = useState( [{state: Array(9).fill(''), isXNext: false}] );
-  //const [isXNext, setXNext] = useState(false);
+  const [history, setHistory] = useState( NEW_GAME );
 
   const [currentMove, setCurrentMove] = useState(0);  // used to store the index of history(array of Objects)
 
   const current = history[currentMove]; // to get current state of the game
 
-  const winner = CalculateWinner(current.state);
+  const {winner, winningSquares} = CalculateWinner(current.state);  // Destructuring winner and winning Squares
   console.log(winner);
 
   //const message = (winner ? `${winner} is the winner` : `${current.isXNext ? 'X' : 'O'} is Next`);
@@ -46,13 +47,20 @@ function App() {
     setCurrentMove(move);
   }
 
+  const startGame = () => {
+    setHistory(NEW_GAME);
+    setCurrentMove(0);
+  }
+
   return (
     <>
       <h1 className="text-center my-3">Tic Tac Toe</h1>
       <br/>
       <StatusMessage current = {current} winner = {winner}/> 
       <div className="app">
-        <Board state = {current.state} handleClick = {updateCell} />
+        <Board state = {current.state} handleClick = {updateCell} winningSquares = {winningSquares} />
+        <br/>
+        <button className="btn btn-outline-dark" onClick = {startGame} > Start Game </button>
         <History history = {history} moveTo = {moveTo}  currentMove = {currentMove} />
       </div>
     </>

@@ -1,10 +1,10 @@
 import React from "react";
 import Square from "./Square";
 
-const Board = ({state, handleClick}) => {
+const Board = ({state, handleClick, winningSquares}) => {
 
   const renderCell = (position) => {
-    return <Square position = {position} value = {state[position]} onClick = {handleClick}/>
+    return <Square position = {position} value = {state[position]} onClick = {handleClick} winningSquares = {winningSquares}/>
   }
 
   return (
