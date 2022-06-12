@@ -6,23 +6,37 @@ import "./Styles/root.scss";
 
 function App() {
 
-  const [state, setState] = useState(Array(9).fill(''));
-  const [isXNext, setXNext] = useState(false);
+  const [history, setHistory] = useState( [{state: Array(9).fill(''), isXNext: false}] );
+  //const [isXNext, setXNext] = useState(false);
 
-  const winner = CalculateWinner(state);
+  const [currentMove, setCurrentMove] = useState(0);  // used to store the index of history(array of Objects)
+
+  const current = history[currentMove]; // to get current state of the game
+
+  const winner = CalculateWinner(current.state);
   console.log(winner);
 
-  const message = (winner ? `${winner} is the winner` : `${isXNext ? 'X' : 'O'} is Next`);
+  const message = (winner ? `${winner} is the winner` : `${current.isXNext ? 'X' : 'O'} is Next`);
 
   const updateCell = (position) => {
     
-    if (state[position] !== '' || winner) return; // if value at that position already exists
-    console.log(state);
+    if (current.state[position] !== '' || winner) return; // if value at that position already exists
+    console.log(current.state);       
+    
+    setHistory((prev) => {
+      const last = prev[prev.length-1];
+      
+      const newBoard = last.state.map((square, pos) => {
+        if (pos === position) {
+          return last.isXNext ? 'X' : 'O';
+        }
+        return square;
+      });
 
-    state[position] = isXNext ? 'X' : 'O';
-    setState(() => state);
+      return prev.concat({state: newBoard, isXNext: !last.isXNext});
+    });
 
-    setXNext((prev) => !prev);
+    setCurrentMove(prev => prev+1);
   };
 
   return (
@@ -30,7 +44,7 @@ function App() {
       <h1 className="text-center my-4">Tic Tac Toe</h1>
       <h3 className="text-center my-5"> {message} </h3>
       <div className="app">
-        <Board state = {state} handleClick = {updateCell}/>
+        <Board state = {current.state} handleClick = {updateCell} />
       </div>
     </>
   );
