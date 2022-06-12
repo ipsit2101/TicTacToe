@@ -6,15 +6,16 @@ const StatusMessage = ({ current, winner }) => {
   return (
     <>
       <div className="alert alert-success" role="alert" style = { {
-        width: '20%',
+        width: '10%',
         margin: '2em auto',
         textAlign: 'center',
+        fontSize: '21px',
       } }>
-        <h3>
+        <h4>
           {winner && `Winner is ${winner}`}
           {!winner && !noMovesLeft && `Next is ${current.isXNext ? "X" : "O"}`}
           {!winner && noMovesLeft && `X and O Tied`}
-        </h3>
+        </h4>
       </div>
     </>
   );

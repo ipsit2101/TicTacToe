@@ -3,34 +3,34 @@ import React from "react";
 const History = ({ history, moveTo, currentMove }) => {
   const style = {
     margin: "15px",
-    padding: "2px",
-    fontSize: "17px",
+    padding: "5px",
+    fontSize: "15px",
     listStyle: "none",
   };
 
   return (
-    <div style={style}>
-      <ul style={style}>
-        {history.map((_, move) => {
-          return (
-            <div className="alert alert-success p-1" role="alert">
-              <li>
-                <button
-                  type="button"
-                  style={{
-                    fontWeight: move === currentMove ? "bold" : "normal",
-                  }}
-                  className="btn btn-group-sm"
-                  onClick={() => moveTo(move)}
-                >
-                  {move === 0 ? "Go to game start" : `Go to move #${move}`}
-                </button>
-              </li>
-            </div>
-          );
-        })}
-      </ul>
-    </div>
+    <ul style = {style}>
+      {history.map((_, move) => {
+        return (
+          <li>
+            <button
+              type="button"
+              style={{
+                fontWeight: move === currentMove ? "bold" : "normal",
+                // color: move === currentMove ? "#155724" : "rgb(219, 136, 19)",
+                width: '150px',
+                padding: '6px',
+                margin: '5px',
+              }}
+              className="btn btn-outline-warning"
+              onClick={() => moveTo(move)}
+            >
+              {move === 0 ? "Go to game start" : `Go to move #${move}`}
+            </button>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 
