@@ -1,7 +1,7 @@
 import React from "react";
 
 const StatusMessage = ({ current, winner }) => {
-  const noMovesLeft = current.state.every((element) => element !== "");
+  const noMovesLeft = current.state.every(element => element !== "");
 
   const val = (current.isXNext ? 'X' : 'O');
   
