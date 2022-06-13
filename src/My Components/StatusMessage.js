@@ -5,6 +5,8 @@ const StatusMessage = ({ current, winner }) => {
   const X = 'X';
   const O = 'O';
 
+  const val = (current.isXNext ? 'X' : 'O');
+  
   return (
     <>
       <div
@@ -18,11 +20,12 @@ const StatusMessage = ({ current, winner }) => {
         }}
       >
         <h4>
-          {winner && `Winner is ${winner}`}
+          {winner && `Winner is `} {winner && <span style = { {color: (winner === 'X' ? 'rgb(4, 185, 31)' : 'rgb(219, 136, 19)'),} }>{winner}</span>}
           {!winner &&
             !noMovesLeft &&
-            `Next is ${current.isXNext ? 'X' : 'O'}`}
-          {!winner && noMovesLeft && `X and O Tied`}
+            `Next is `}{!winner &&
+              !noMovesLeft && <span style = { {color: (val === 'X' ? 'rgb(4, 185, 31)' : 'rgb(219, 136, 19)'),} }>{val}</span>}
+          {!winner && noMovesLeft && `X and O tied`}
         </h4>
       </div>
     </>

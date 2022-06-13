@@ -14,13 +14,13 @@ const History = ({ history, moveTo, currentMove }) => {
         return (
           <li>
             <button
-              type="button"
-              style={{
+              type = "button"
+              style = { {
                 fontWeight: move === currentMove ? "bold" : "normal",
                 width: '150px',
                 padding: '6px',
                 margin: '5px',
-              }}
+              } }
               className="btn btn-outline-warning"
               onClick={() => moveTo(move)}
             >
